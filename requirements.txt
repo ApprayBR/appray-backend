@@ -1,0 +1,5 @@
+Django
+gunicorn
+redis
+psycopg2
+graphene-django>=2.0

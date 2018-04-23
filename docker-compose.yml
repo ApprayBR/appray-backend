@@ -1,0 +1,35 @@
+version: '2'
+
+services:
+
+  django:
+    build: .
+    container_name: appray-backend-django
+    ports:
+        - "8080:8080"
+    volumes:
+        - .:/usr/src/appray-backend
+    environment:
+      ENV: DEV
+    depends_on:
+        - postgres
+        - redis
+    networks:
+        - network-back
+
+  postgres:
+    image: postgres
+    container_name: appray-backend-postgres
+    networks:
+        - network-back
+
+  redis:
+    image: redis
+    container_name: appray-backend-redis
+    networks:
+        - network-back
+
+networks:
+
+    network-back:
+      driver: bridge
